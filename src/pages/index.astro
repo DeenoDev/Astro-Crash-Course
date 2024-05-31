@@ -1,8 +1,9 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
 ---
-
 <MainLayout>
       <!-- Top Grid -->
       <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
