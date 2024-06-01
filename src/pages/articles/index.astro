@@ -30,8 +30,8 @@ const allBlogArticles: CollectionEntry<'blog'>[] = await getCollection('blog');
                {
                 article.data.tags.map((tag: string, index: number) => (
                 <span
-                  class={index % 2 === 0 ? "px-2 py-1 bg-blue-500 text-white rounded-full text-xs hover:opacity-90" : "px-2 py-1 bg-indigo-500 text-white rounded-full text-xs hover:opacity-90"}
-                  ><a href="">{ tag }</a></span>
+                  class={index % 2 === 0 ? "px-2 py-1 bg-green-500 text-white rounded-full text-xs hover:opacity-90" : "px-2 py-1 bg-indigo-500 text-white rounded-full text-xs hover:opacity-90"}
+                  ><a href={'/articles/tag' + tag}>{ tag }</a></span>
                 ))}
               </div>
             </div>
