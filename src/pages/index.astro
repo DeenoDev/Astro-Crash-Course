@@ -2,6 +2,8 @@
 import MainLayout from "../layouts/MainLayout.astro";
 import SearchForm from "../components/SearchForm.astro";
 
+import { getCollection } from "astro:content";
+
 
 ---
 <MainLayout>
@@ -11,10 +13,7 @@ import SearchForm from "../components/SearchForm.astro";
           <h1 class="text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl">
             Articles, Stories & Tutorials for Tech People
           </h1>
-
-          <SearchForm />
-
-          
+          <SearchForm />  
         </div>
         <!-- Most Recent Article -->
         <div class="relative inline-block w-full sm:w-auto cursor-pointer rounded-2xl">
