@@ -15,8 +15,8 @@ const allBlogArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
     <!-- Main Grid -->
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {allBlogArticles.map(article => (
+        <ArticleCard article={article}/>
         
-
       ))}
     </div>
 
