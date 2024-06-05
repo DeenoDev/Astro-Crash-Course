@@ -2,6 +2,12 @@
 import MainLayout from "../../layouts/MainLayout.astro";
 import { getEntry } from "astro:content";
 
+const { slug } = Astro.params;
+
+if (slug === undefined) {
+    throw new Error('Slug is required');
+}
+
 ---
 
 <MainLayout>
