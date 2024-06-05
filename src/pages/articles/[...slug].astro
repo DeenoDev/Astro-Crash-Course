@@ -8,6 +8,8 @@ if (slug === undefined) {
     throw new Error('Slug is required');
 }
 
+const entry = await getEntry('blog', slug);
+
 ---
 
 <MainLayout>
