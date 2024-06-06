@@ -25,6 +25,7 @@ interface Props {
           <a href="article.html"> {article.data.title} </a>
         </h2>
         <p class="text-gray-600 text-sm mb-4">{ formatDate(article.data.pubDate) }</p>
+        <Tags tags={article.data.tags}/>
         
       </div>
     </div>
