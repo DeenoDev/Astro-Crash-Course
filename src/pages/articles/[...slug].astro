@@ -26,14 +26,12 @@ const { Content } = await entry.render();
         <h1 class="text-4xl font-bold mb-2"> {entry.data.title}</h1>
         <h3 class="text-lg mb-2">Written by {entry.data.author} on {formatDate(entry.data.pubDate)}</h3>
         <div class="flex flex-wrap gap-2 mb-6">
-          <span
-            class="px-2 py-1 bg-blue-500 text-white rounded-full text-xs hover:opacity-90"
-            ><a href="">Code</a></span
-          >
-          <span
-            class="px-2 py-1 bg-purple-500 text-white rounded-full text-xs hover:opacity-90"
-            ><a href="">Programming</a></span
-          >
+          {
+            entry.data.tags.map((tag: string, index: number) => (
+            <span
+              class={index % 2 === 0 ? "px-2 py-1 bg-green-500 text-white rounded-full text-xs hover:opacity-90" : "px-2 py-1 bg-indigo-500 text-white rounded-full text-xs hover:opacity-90"}
+              ><a href={'/articles/tag' + tag}>{ tag }</a></span>
+            ))}
         </div>
         <img src={'/images/' + entry.data.image} alt="Article Image" class="w-full h-auto rounded-xl mb-6" />
         <Content />
