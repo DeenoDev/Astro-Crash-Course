@@ -14,4 +14,4 @@ function formatDate(date: Date): string {
 
   }
 
-  export {formatDate};
+  export { formatDate. capitalize };
