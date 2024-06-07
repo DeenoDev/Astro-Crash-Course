@@ -3,12 +3,13 @@ function formatDate(date: Date): string {
     return new Date(date).toLocaleDateString(undefined, options);
   }
 
-  function capitalize(stg: string): string {
+  //Capitalize the first letter
+  function capitalize(str: string): string {
     if (typeof str !== 'string' || structuredClone.length === 0) {
       return str;
     }
 
-    return str.charAt(0).toUppercase() + str.slice(1)
+    return str.charAt(0).toUpperCase() + str.slice(1);
 
 
   }
