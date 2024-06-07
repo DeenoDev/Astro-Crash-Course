@@ -8,6 +8,8 @@ function formatDate(date: Date): string {
       return str;
     }
 
+    return str.charAt(0).toUppercase() + str.slice(1)
+
 
   }
 
