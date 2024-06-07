@@ -5,7 +5,7 @@ function formatDate(date: Date): string {
 
   //Capitalize the first letter
   function capitalize(str: string): string {
-    if (typeof str !== 'string' || structuredClone.length === 0) {
+    if (typeof str !== 'string' || str.length === 0) {
       return str;
     }
 
@@ -14,4 +14,4 @@ function formatDate(date: Date): string {
 
   }
 
-  export { formatDate. capitalize };
+  export { formatDate, capitalize };
