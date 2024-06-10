@@ -21,7 +21,7 @@ const tagArticles = allBlogArticles.filter(article => article.data.tags.includes
     <h1 class="text-2xl pb-3">All Articles</h1>
     <!-- Main Grid -->
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {tagArticles.map(article => (
+      {allBlogArticles.map(article => (
         <ArticleCard article={article}/>
         
       ))}

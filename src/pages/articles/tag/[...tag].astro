@@ -4,8 +4,16 @@ import ArticleCard from "../../../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 
+const {tag} = Astro.params;
+
+if(tag === undefined){
+  throw new Error('Tag is required');
+}
+
 const allBlogArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
 .sort((a:CollectionEntry<'blog'>, b:CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const tagArticles = allBlogArticles.filter(article => article.data.tags.includes(tag));
 ---
 
 <MainLayout>
