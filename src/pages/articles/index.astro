@@ -7,7 +7,7 @@ import type { CollectionEntry } from "astro:content";
 const {tag} = Astro.params;
 
 if(tag === undefined){
-  throw new Error();
+  throw new Error('Tag is required');
 }
 
 const allBlogArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
