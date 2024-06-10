@@ -3,6 +3,7 @@ import MainLayout from "../../../layouts/MainLayout.astro";
 import ArticleCard from "../../../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { capitalize } from "../../../utils";
 
 const {tag} = Astro.params;
 
@@ -17,10 +18,10 @@ const tagArticles = allBlogArticles.filter(article => article.data.tags.includes
 ---
 
 <MainLayout>
-<h1 class="text-2xl pb-3">All Articles</h1>
+<h1 class="text-2xl pb-3">#{capitalize(tag)}</h1>
 <!-- Main Grid -->
 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-  {allBlogArticles.map(article => (
+  {tagArticles.map(article => (
     <ArticleCard article={article}/>
     
   ))}
