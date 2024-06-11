@@ -2,6 +2,8 @@
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { capitalize } from "../utils";
+
+const allBlogArticles: CollectionEntry<'blog'>[] = await getCollection('blog');
 ---
 
 <footer class="bg-indigo-900 text-white">
