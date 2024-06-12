@@ -3,6 +3,8 @@ import MainLayout from "../../layouts/MainLayout.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
 import SearchForm from "../../components/SearchForm.astro";
 import { getCollection } from "astro:content";
+
+const query: string | null = Astro.url.searchParams.get('query');
 ---
 
 <MainLayout title="Search Results">
