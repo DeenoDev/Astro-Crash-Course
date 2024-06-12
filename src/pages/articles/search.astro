@@ -23,6 +23,8 @@ const searchResults = allBlogArticles.filter(article => {
     .toLowerCase()
     .includes(query!.toLowerCase());
 
+    return titleMatch || bodyMatch || slugMatch
+
 });
 ---
 
