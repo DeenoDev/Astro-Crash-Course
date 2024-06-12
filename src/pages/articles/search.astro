@@ -19,6 +19,10 @@ const searchResults = allBlogArticles.filter(article => {
     .toLowerCase()
     .includes(query!.toLowerCase());
 
+    const slugMatch: boolean = article.slug
+    .toLowerCase()
+    .includes(query!.toLowerCase());
+
 });
 ---
 
