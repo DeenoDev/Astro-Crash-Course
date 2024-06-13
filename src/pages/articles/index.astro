@@ -1,40 +1,37 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
+import SearchForm from "../../components/SearchForm.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
+import MostRecentArticle from "../../components/MostRecentArticle.astro";
+import { HOMEPAGE_ARTICLE_LIMIT } from "../../constants";
+
 import { getCollection } from "astro:content";
-import type { CollectionEntry } from "astro:content";
-
-const {tag} = Astro.params;
-
-if(tag === undefined){
-  throw new Error('Tag is required');
-}
+import type { CollectionEntry, CollectionKey } from "astro:content";
 
 const allBlogArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
-.sort((a:CollectionEntry<'blog'>, b:CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  .sort((a:CollectionEntry<'blog'>, b:CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const tagArticles = allBlogArticles.filter(article => article.data.tags.includes(tag));
+const mostRecentArticle: CollectionEntry<'blog'> = allBlogArticles[0];
 
+const otherArticles: CollectionEntry<'blog'>[] = allBlogArticles.slice(1);
 ---
-
 <MainLayout>
-    <h1 class="text-2xl pb-3">All Articles</h1>
-    <!-- Main Grid -->
-    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {allBlogArticles.map(article => (
-        <ArticleCard article={article}/>
-        
-      ))}
-    </div>
+  <!-- Top Grid -->
+  <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
+    <div>
+      <h1 class="text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl">
+        Articles, Stories & Tutorials for Tech People
+      </h1>
 
-      <!-- Pagination -->
-      <div class="flex justify-between mt-10">
-        <a href="#" class="inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg">
-          Previous
-        </a>
-        <a href="#"
-         class="inline-block bg-indigo-100 px-3 py-2 hover:bg-indigo-600 hover:text-white rounded-lg">
-          Next
-        </a>
-      </div>
+      <SearchForm />
+    </div>
+    <MostRecentArticle article={mostRecentArticle} />
+  </div>
+
+  <!-- Main Grid -->
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+   {otherArticles.slice(0, HOMEPAGE_ARTICLE_LIMIT).map(article => (
+    <ArticleCard article={article} />
+   ))}
+  </div>
 </MainLayout>
