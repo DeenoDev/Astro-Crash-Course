@@ -1,37 +1,31 @@
 ---
 import MainLayout from "../../layouts/MainLayout.astro";
-import SearchForm from "../../components/SearchForm.astro";
 import ArticleCard from "../../components/ArticleCard.astro";
-import MostRecentArticle from "../../components/MostRecentArticle.astro";
-import { HOMEPAGE_ARTICLE_LIMIT } from "../../constants";
+import SearchForm from "../../components/SearchForm.astro";
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
+import { ARTICLES_PER_PAGE } from "../../constants";
 
-import { getCollection } from "astro:content";
-import type { CollectionEntry, CollectionKey } from "astro:content";
+const currentPage: number | null = +Astro.url.searchParams.get('page')! || 1;
 
 const allBlogArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
   .sort((a:CollectionEntry<'blog'>, b:CollectionEntry<'blog'>) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const mostRecentArticle: CollectionEntry<'blog'> = allBlogArticles[0];
+  const totalPages: number = Math.ceil(allBlogArticles.length / ARTICLES_PER_PAGE);
 
-const otherArticles: CollectionEntry<'blog'>[] = allBlogArticles.slice(1);
+  const articlesForPage: CollectionEntry<'blog'>[] = allBlogArticles.slice((currentPage - 1) * ARTICLES_PER_PAGE, currentPage * ARTICLES_PER_PAGE);
 ---
+
 <MainLayout>
-  <!-- Top Grid -->
-  <div class="grid grid-cols-1 gap-5 lg:grid-cols-2">
-    <div>
-      <h1 class="text-5xl font-bold mt-4 mb-8 leading-tight xl:text-6xl">
-        Articles, Stories & Tutorials for Tech People
-      </h1>
+<h1 class="text-2xl pb-3">All Articles</h1>
 
-      <SearchForm />
-    </div>
-    <MostRecentArticle article={mostRecentArticle} />
-  </div>
+<SearchForm />
+<br>
 
-  <!-- Main Grid -->
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-   {otherArticles.slice(0, HOMEPAGE_ARTICLE_LIMIT).map(article => (
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {articlesForPage.map(article => (
     <ArticleCard article={article} />
-   ))}
-  </div>
+  ))}
+</div>
+  
 </MainLayout>
