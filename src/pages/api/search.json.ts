@@ -17,7 +17,7 @@ export const GET: APIRoute = ({ url }): Promise<Response> => {
     });
    } 
 
-   const allBlogArticles: CollectionEntry<'blog'> = await.getCollection('blog');
+   const allBlogArticles: CollectionEntry<'blog'>[] = await.getCollection('blog');
 
    // Filter articles based on query
 const searchResults = allBlogArticles.filter(article => {
