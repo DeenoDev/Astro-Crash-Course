@@ -17,6 +17,25 @@ export const GET: APIRoute = ({ url }): Promise<Response> => {
     });
    } 
 
+   const allBlogArticles: CollectionEntry<'blog'> = await.getCollection('blog');
+
+   // Filter articles based on query
+const searchResults = allBlogArticles.filter(article => {
+    const titleMatch: boolean = article.data.title
+      .toLowerCase()
+      .includes(query!.toLowerCase());
+  
+      const bodyMatch: boolean = article.body
+      .toLowerCase()
+      .includes(query!.toLowerCase());
+  
+      const slugMatch: boolean = article.slug
+      .toLowerCase()
+      .includes(query!.toLowerCase());
+  
+      return titleMatch || bodyMatch || slugMatch
+  });
+
    return new Response(JSON.stringify({ query }), {
     status: 200,
     headers: {
