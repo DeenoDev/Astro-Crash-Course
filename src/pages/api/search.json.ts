@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import { getCollection } from "astro:content";
 
 export const GET: APIRoute = ({ url }): Response => {
    const query: string | null = url.searchParams.get('query');
