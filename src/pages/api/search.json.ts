@@ -14,4 +14,11 @@ export const GET: APIRoute = ({ url }): Response => {
         }
     });
    } 
+
+   return new Response(JSON.stringify({ query }), {
+    status: 200,
+    headers: {
+        'Content-Type': 'application/json'
+    }
+});  
 };
