@@ -29,6 +29,10 @@ const allBlogArticles: CollectionEntry<'blog'>[] = (await getCollection('blog'))
   ))}
 </div>
 
-<Pagination currentPage={currentPage} totalPages={totalPages} disablePrevious={currentPage === 1} disableNext={currentPage === totalPages}/>
-  
+<Pagination 
+currentPage={currentPage} 
+totalPages={totalPages} 
+disablePrevious={currentPage === 1} 
+disableNext={currentPage === totalPages}/>
+
 </MainLayout>
